@@ -1,9 +1,15 @@
 import React from "react";
 import { angleToRadians } from "../../utils";
-import { OrbitControls, PerspectiveCamera } from "@react-three/drei";
+import {
+  Environment,
+  OrbitControls,
+  PerspectiveCamera,
+  SpotLight,
+} from "@react-three/drei";
 import { useRef } from "react";
 import { useFrame } from "@react-three/fiber";
 import { useEffect } from "react";
+import * as THREE from "three";
 
 const Three = () => {
   const orbitControlRef = useRef(null);
@@ -28,12 +34,17 @@ const Three = () => {
 
       <mesh rotation={[-angleToRadians(90), 0, 0]} receiveShadow>
         <planeGeometry args={[7, 7]} />
-        <meshStandardMaterial color="green" />
+        <meshPhongMaterial color="green" />
       </mesh>
 
-      <ambientLight args={["#ffffff", 0.1]} />
+      <ambientLight args={["#ffffff", 0.2]} />
 
-      <spotLight args={["#ffffff", 1]} position={[-3, 1, 0]} castShadow />
+      <spotLight args={["#ffffff", 1]} position={[-4, 1, 0]} castShadow />
+
+      {/* <Environment background>
+        <sphereGeometry args={[50, 100, 100]} />
+        <meshBasicMaterial color="red" side={THREE.BackSide} />
+      </Environment> */}
     </>
   );
 };
